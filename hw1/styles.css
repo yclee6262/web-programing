@@ -1,3 +1,26 @@
-.{
+
+* {
     box-sizing: border-box;
+  }
+  
+.responsive {
+padding: 0 6px;
+float: left;
+width: 33.33333%;
+}
+
+
+@media (max-width: 800px){
+.responsive {
+    width: 49.99999%;
+    margin: 6px 0;
+}
+}  
+
+
+
+.clearfix:after {
+content: "";
+display: table;
+clear: both;
 }
