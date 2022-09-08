@@ -25,7 +25,7 @@ clear: both;
 }
 
 .section {
-    margin-top: 15px;
+    margin-top: 30px;
     display: flex;
     justify-content: space-between;
 }
@@ -38,14 +38,38 @@ clear: both;
     flex-basis: 35%;
 }
 
+.host {
+    background: #191f29;
+    padding: 30px 40px 220px;
+    color: #fff;
+}
+
 .host-img {
-    height: 30em;
-    width: 30em;
+    height: 8em;
+    width: 8em;
     border-radius: 50%;
+    background-color: blanchedalmond;
+    margin-top: 12em;
+}
+
+.pin {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    position: absolute;
+    bottom: 150px;
+    left: 40px;
+}
+
+.pin img {
+    width: 20px;
+    height: 30px;
+    margin: 20px 10px;
+    cursor: pointer;
 }
 
 .guest-img {
-    height: 15em;
-    width: 15em;
+    height: 6em;
+    width: 6em;
     border-radius: 50%;
 }
