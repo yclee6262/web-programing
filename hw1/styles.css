@@ -9,7 +9,6 @@ float: left;
 width: 33.33333%;
 }
 
-
 @media (max-width: 800px){
 .responsive {
     width: 49.99999%;
@@ -23,4 +22,30 @@ width: 33.33333%;
 content: "";
 display: table;
 clear: both;
+}
+
+.section {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sec1 {
+    flex-basis: 60%;
+}
+
+.sec2 {
+    flex-basis: 35%;
+}
+
+.host-img {
+    height: 30em;
+    width: 30em;
+    border-radius: 50%;
+}
+
+.guest-img {
+    height: 15em;
+    width: 15em;
+    border-radius: 50%;
 }
