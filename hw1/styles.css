@@ -31,11 +31,11 @@ clear: both;
 }
 
 .sec1 {
-    flex-basis: 60%;
+    flex-basis: 65%;
 }
 
 .sec2 {
-    flex-basis: 35%;
+    flex-basis: 33%;
 }
 
 .host {
@@ -68,8 +68,27 @@ clear: both;
     cursor: pointer;
 }
 
+.guest {
+    background: #41454c;
+    padding: 30px 40px 240px;
+    color: #fff;
+}
+
+.guest_block {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
+} 
+
+.each_guest {
+    background: rgb(34, 40, 46);
+    padding: 15px 20px 18px;
+    align-items: center;
+}
+
 .guest-img {
-    height: 6em;
-    width: 6em;
+    width: 100%;
     border-radius: 50%;
+    cursor: pointer;
 }
