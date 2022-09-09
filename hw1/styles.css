@@ -16,7 +16,9 @@ width: 33.33333%;
 }
 }  
 
-
+.container {
+    background: black;
+}
 
 .clearfix:after {
 content: "";
@@ -31,16 +33,16 @@ clear: both;
 }
 
 .sec1 {
-    flex-basis: 65%;
+    flex-basis: 74%;
 }
 
 .sec2 {
-    flex-basis: 33%;
+    flex-basis: 26%;
 }
 
 .host {
-    background: #191f29;
-    padding: 30px 40px 220px;
+    background: rgba(128, 108, 108, 0.405);
+    padding: 30px 40px 300px;
     color: #fff;
 }
 
@@ -57,7 +59,7 @@ clear: both;
     align-items: center;
     justify-content: left;
     position: absolute;
-    bottom: 150px;
+    bottom: 80px;
     left: 40px;
 }
 
@@ -70,25 +72,59 @@ clear: both;
 
 .guest {
     background: #41454c;
-    padding: 30px 40px 240px;
+    padding: 30px 40px 14px;
     color: #fff;
 }
 
 .guest_block {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: auto auto auto;
+    width: auto;
+    display: flex;
+    margin-left: 1em;
+    flex-flow: row wrap;
     grid-gap: 20px;
 } 
 
+.mute {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    width: 1em;
+    height: 1.5em;
+}
+
 .each_guest {
     background: rgb(34, 40, 46);
-    padding: 15px 20px 18px;
-    align-items: center;
+    padding: 18px 20px 15px;
+    position: relative;
+    border-radius: 5%;
+    justify-content: center;
+}
+
+.odd_guest {
+    background: rgb(34, 40, 46);
+    padding: 15px 20px 15px;
+    position: relative;
+    display: grid;
+    border-radius: 5%;
+    width: 100%;
 }
 
 .guest-img {
-    width: 100%;
+    width: 6em;
+    height: 6em;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.odd-guest-img {
+    width: 6em;
+    height: 6em;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bottom {
+    width: 1500px;
 }
