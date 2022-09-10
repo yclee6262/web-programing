@@ -43,7 +43,7 @@ clear: both;
 
 .host {
     background: rgba(128, 108, 108, 0.405);
-    padding: 30px 40px 300px;
+    padding: 30px 40px 304px;
     color: #fff;
 }
 
@@ -69,8 +69,8 @@ clear: both;
     align-items: center;
     justify-content: left;
     position: absolute;
-    bottom: 80px;
-    left: 40px;
+    bottom: 15px;
+    left: 25px;
 }
 
 .pin img {
@@ -155,4 +155,35 @@ clear: both;
 
 .bottom {
     width: 1500px;
+}
+
+.hover_pic:hover {
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+.host-img:hover + .hover_pic {
+    opacity: 0.6;
+    transition-duration: 0.3s;
+}
+
+.hover_pic_guest:hover {
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+
+.guest-img:hover + .hover_pic_guest {
+    opacity: 0.6;
+    transition-duration: 0.3s;
+}
+
+.hover_pic_odd:hover {
+    opacity: 1;
+    transition-duration: 0.5s;
+}
+
+.odd-guest-img:hover + .hover_pic_odd {
+    opacity: 0.6;
+    transition-duration: 0.3s;
 }
