@@ -30,6 +30,7 @@ clear: both;
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .sec1 {
@@ -52,6 +53,15 @@ clear: both;
     border-radius: 50%;
     background-color: blanchedalmond;
     margin-top: 12em;
+    position: relative;
+}
+
+.hover_pic {
+    position: absolute;
+    top: 275px;
+    left: 505px;
+    border-radius: 25%;
+    opacity: 0;
 }
 
 .pin {
@@ -82,7 +92,7 @@ clear: both;
     margin-left: 1em;
     flex-flow: row wrap;
     grid-gap: 20px;
-} 
+}
 
 .mute {
     position: absolute;
@@ -123,6 +133,24 @@ clear: both;
     cursor: pointer;
     justify-content: center;
     margin-top: 20px;
+}
+
+.hover_pic_guest {
+    position: absolute;
+    width: 5em;
+    top: 55px;
+    left: 30px;
+    border-radius: 25%;
+    opacity: 0;
+}
+
+.hover_pic_odd {
+    position: absolute;
+    width: 5em;
+    top: 75px;
+    left: 110px;
+    border-radius: 25%;
+    opacity: 0;
 }
 
 .bottom {
