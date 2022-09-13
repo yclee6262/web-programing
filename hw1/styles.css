@@ -14,6 +14,12 @@ width: 33.33333%;
     width: 49.99999%;
     margin: 6px 0;
 }
+.sec1 {
+    width: 60%;
+}
+.sec2 {
+    width: 39.9999%;
+}
 }  
 
 .container {
@@ -153,9 +159,6 @@ clear: both;
     opacity: 0;
 }
 
-.bottom {
-    width: 1500px;
-}
 
 .hover_pic:hover {
     opacity: 1;
@@ -192,7 +195,15 @@ clear: both;
     display: flex;
     margin-left: 1.5em;
     align-items: center;
-    grid-gap: 25em;
+    justify-content: space-between;
+}
+
+.botton {
+    display: grid;
+}
+
+.tooltiptext {
+    color: aliceblue;
 }
 
 #currenttime {
@@ -200,7 +211,7 @@ clear: both;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.bottons {
+.bottons_img {
     width: auto;
     height: 2em;
     border-radius: 25%;
