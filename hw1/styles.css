@@ -198,12 +198,28 @@ clear: both;
     justify-content: space-between;
 }
 
+.mid_footer {
+    display: flex;
+    align-items: center;
+}
+
+.right_footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .botton {
     display: grid;
+    align-items: flex-end;
 }
 
 .tooltiptext {
     color: aliceblue;
+    margin: 10px;
+    font-size: x-small;
+    visibility: hidden;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 #currenttime {
@@ -216,4 +232,8 @@ clear: both;
     height: 2em;
     border-radius: 25%;
     margin: 10px;
+}
+
+.bottons_img:hover ~ .tooltiptext {
+    visibility: visible;
 }
