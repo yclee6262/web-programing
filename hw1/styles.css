@@ -95,6 +95,7 @@ clear: both;
 .guest_block {
     width: auto;
     display: flex;
+    justify-content: space-around;
     margin-left: 1em;
     flex-flow: row wrap;
     grid-gap: 20px;
