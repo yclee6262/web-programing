@@ -219,6 +219,14 @@ clear: both;
     visibility: visible;
 }
 
-@media only screen and (max-width: 800px) {
-    
+@media only screen and (max-width: 1000px) {
+    .guest_block {
+        display: grid;
+    }
+    .each_guest {
+        width: auto;
+    }
+    #odd_guest {
+        width: auto;
+    }
 }
