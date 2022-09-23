@@ -90,6 +90,14 @@ clear: both;
     height: 1.5em;
 }
 
+.remove_icon {
+    position: absolute;
+    top: 0.5em;
+    left: 00.5em;
+    width: 1em;
+    height: 1.5em;
+}
+
 .each_guest {
     background: rgb(34, 40, 46);
     padding: 18px 20px 15px;
