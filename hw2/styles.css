@@ -17,6 +17,7 @@ clear: both;
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
+    align-content: center;
     position: relative;
 }
 
@@ -182,7 +183,7 @@ clear: both;
     transition-duration: 0.3s;
 }
 
-.footer {
+#footer {
     display: flex;
     margin-left: 1.5em;
     align-items: center;
