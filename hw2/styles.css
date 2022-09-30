@@ -71,13 +71,15 @@ clear: both;
     background: #41454c;
     padding: 30px 40px 14px;
     color: #fff;
+    align-items: center;
 }
 
 .guest_block {
     width: auto;
     display: flex;
+    height: auto;
     justify-content: space-around;
-    margin-left: 1em;
+    margin-left: auto;
     flex-flow: row wrap;
     grid-gap: 20px;
 }
