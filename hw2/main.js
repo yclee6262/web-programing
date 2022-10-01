@@ -24,10 +24,19 @@ function unpin(item){
     document.getElementById("odd_guest").style.width = "auto";
     document.getElementById("footer").style.top = "38em"
     host.parentNode.removeChild(host);
-    guest.appendChild(host);
+    document.getElementById('guest_1').insertAdjacentElement('beforebegin', host);
     host.style.background = "rgb(34, 40, 46)";
-    host.style.padding = "0.5px 6px 5px";
     host.style.justifyContent = "center";
     host.style.position = "relative";
     host.style.borderRadius = "5%";
+    host.style.padding = "18px 20px 15px";
+    host.style.alignItems = "center";
+    document.getElementById("host-img").style.marginTop = "auto";
+    document.getElementById("host-img").style.height = "6em";
+    document.getElementById("host-img").style.width = "6em";
+    item.style.top = "55px";
+    item.style.left = "20px";
+    item.style.width = "5em";
+    document.getElementById("pin").style.display = "none";
+    document.getElementById("hover_pic_odd").style.left = "30px"
 }

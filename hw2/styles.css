@@ -35,7 +35,7 @@ clear: both;
     color: #fff;
 }
 
-.host-img {
+#host-img {
     height: 57.5%;
     width: 57.5%;
     border-radius: 50%;
@@ -157,7 +157,7 @@ clear: both;
     transition-duration: 0.5s;
 }
 
-.host-img:hover + .hover_pic {
+#host-img:hover + .hover_pic {
     opacity: 0.6;
     transition-duration: 0.3s;
 }
