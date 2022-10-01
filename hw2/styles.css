@@ -79,7 +79,7 @@ clear: both;
     width: auto;
     display: flex;
     height: auto;
-    justify-content: space-around;
+    justify-content: space-evenly;
     margin-left: auto;
     flex-flow: row wrap;
     grid-gap: 20px;
