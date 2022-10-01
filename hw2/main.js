@@ -41,10 +41,22 @@ function unpin(item){
     document.getElementById("host-img").style.marginTop = "auto";
     document.getElementById("host-img").style.height = "6em";
     document.getElementById("host-img").style.width = "6em";
-    item.style.top = "55px";
-    item.style.left = "20px";
+    item.style.top = "95px";
+    item.style.left = "150px";
     item.style.width = "5em";
+    document.getElementById("hp1").style.top = "95px";
+    document.getElementById("hp1").style.left = "160px";
+    document.getElementById("hp2").style.top = "95px";
+    document.getElementById("hp2").style.left = "160px";
+    document.getElementById("hp3").style.top = "95px";
+    document.getElementById("hp3").style.left = "160px";
+    document.getElementById("hp4").style.top = "95px";
+    document.getElementById("hp4").style.left = "160px";
+    document.getElementById("hover_pic_odd").style.top = "110px";
+    document.getElementById("hover_pic_odd").style.left = "160px";
     document.getElementById("pin").style.display = "none";
-    document.getElementById("hover_pic_odd").style.left = "30px"
     console.log(guest.childElementCount);
+    if (guest.childElementCount === 1) {
+        full_screen()
+    }
 }
