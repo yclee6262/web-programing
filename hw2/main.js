@@ -24,7 +24,6 @@ function unpin(item){
     document.getElementById("sec_guest").style.flexBasis = "100%";
     document.getElementById("sec_guest").style.height = "38em";
     document.getElementById("odd_guest").style.width = "auto";
-    document.getElementById("footer").style.top = "38em"
     host.parentNode.removeChild(host);
     document.getElementById('guest_1').insertAdjacentElement('beforebegin', host);
     host.style.background = "rgb(34, 40, 46)";
@@ -56,7 +55,5 @@ function unpin(item){
     document.getElementById("hover_pic_odd").style.left = "160px";
     document.getElementById("pin").style.display = "none";
     console.log(guest.childElementCount);
-    if (guest.childElementCount === 1) {
-        full_screen()
-    }
 }
+
