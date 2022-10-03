@@ -87,3 +87,28 @@ function pin(item) {
     new_host.lastElementChild.previousElementSibling.previousElementSibling.style.marginTop = "0.2%";
     console.log(new_host.lastElementChild)
 }
+
+function pin_odd(item){
+    var ori_host = document.getElementById("host");
+    var host_img = document.getElementById("host-img").src;
+    var new_host = document.getElementById("odd_guest");
+    var new_guest = document.createElement("div");
+    new_guest.innerHTML = new_host.innerHTML;
+    new_guest.classList.add("each_guest");
+    new_host.parentNode.appendChild(new_guest);
+    new_guest.lastElementChild.previousElementSibling.lastElementChild.previousElementSibling.src = host_img;
+    new_guest.lastElementChild.innerHTML = "你";
+    new_guest.firstElementChild.remove();
+    new_guest.lastElementChild.previousElementSibling.lastElementChild.style.left = "30px";
+    ori_host.parentNode.replaceChild(new_host, ori_host);
+    new_host.style.padding = "21.5% 50% 27.3%";
+    new_host.style.color = "#fff";
+    new_host.style.background = "rgba(128, 108, 108, 0.405)";
+    new_host.style.borderRadius = "0";
+    new_host.lastElementChild.style.justifyContent = "left";
+    new_host.lastElementChild.style.bottom = "15px";
+    new_host.lastElementChild.style.left = "25px";
+    new_host.lastElementChild.style.position = "absolute";
+    new_host.lastElementChild.previousElementSibling.lastElementChild.style.left = "565px";
+    new_host.lastElementChild.previousElementSibling.lastElementChild.style.top = "300px";
+}
