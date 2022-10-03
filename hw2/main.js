@@ -57,3 +57,18 @@ function unpin(item){
     console.log(guest.childElementCount);
 }
 
+function pin(item) {
+    var ori_host = document.getElementById("host");
+    var new_host = item.parentNode;
+    ori_host.parentNode.replaceChild(new_host, ori_host);
+    new_host.style.padding = "22.8% 40% 27.3%";
+    new_host.style.color = "#fff";
+    new_host.style.background = "rgba(128, 108, 108, 0.405)";
+    new_host.style.borderRadius = "0";
+    new_host.lastElementChild.style.justifyContent = "left";
+    new_host.lastElementChild.style.bottom = "15px";
+    new_host.lastElementChild.style.left = "25px";
+    new_host.lastElementChild.style.position = "absolute";
+    new_host.lastElementChild.style.alignItems = "center";
+    console.log(new_host.lastElementChild)
+}
