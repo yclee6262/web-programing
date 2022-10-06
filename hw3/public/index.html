@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -28,7 +28,31 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" class="todo-app_root">
+        <header class="todo-app_header">
+
+        </header>
+        <section class="todo-app_main">
+            <input type="text" class="todo-app_input">
+            <ul class="todo-app_list" id="todo-list">
+                <li class="todo-app_item">
+                    <div class="todo-app_checkbox">
+                        <input type="text" id="2">
+                        <label for="2"></label>
+                    </div>
+                    <h1 class="todo-app_item-detail">
+                        this is TODO
+                    </h1>
+                    <img src="x.png" class="todo-app_item-x">
+                </li>
+            </ul>
+        </section>
+        <footer class="todo-app_footer" id="todo-footer">
+            <div class="todo-app_totsl"></div>
+            <ul class="todo-app_view-bottoms"></ul>
+            <div class="todo-app_clean"></div>
+        </footer>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
