@@ -7,7 +7,7 @@ const Main = () => {
     const [note, setnote] = useState('')
     function addItem() {
         setdata(function(prev){
-            return [...prev, note]
+            return [...prev, {note}]
         })
     }
 
@@ -27,7 +27,10 @@ const Main = () => {
         value={note} onChange={noteChange}></input>
         <ul className="todo-app__list" id="todo-list">
             {
-                data.map(item => <Item/>)
+                data.map(item => {
+                    const {note} = item
+                    return <Item notetext={note} />
+                })
             }
         </ul>
     </div>
