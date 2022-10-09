@@ -45,7 +45,7 @@ const Main = ( {setFooter, setnum}) => {
       <ul className="todo-app__list" id="todo-list">
         {data.map((item) => {
           const { note, id, } = item;
-          return <Item key={id} id={id} notetext={note} deleteData={setdata} />;
+          return <Item key={id} id={id} notetext={note} deleteData={setdata} setnum={setnum}/>;
         })}
       </ul>
     </div>

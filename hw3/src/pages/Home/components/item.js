@@ -1,8 +1,11 @@
 import x from "./x.png";
 import { useState } from "react";
 
-const Item = ({ id, notetext, deleteData }) => {
+const Item = ({ id, notetext, deleteData, setnum }) => {
   function deleteTODO() {
+    setnum(function (prev) {
+      return prev - 1;
+    });
     deleteData(function (prev) {
       return prev.filter((item) => item.id !== id);
     });
