@@ -132,6 +132,10 @@ input[type="checkbox"] {
   height: 100%;
 }
 
+.todo-app_item-done {
+  text-decoration: line-through; opacity: 0.5;
+}
+
 .todo-app__footer {
   width: 100%;
   display: flex;
