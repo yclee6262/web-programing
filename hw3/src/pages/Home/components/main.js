@@ -2,7 +2,7 @@ import Item from "./item";
 import { useState } from "react";
 import { v4 } from "uuid";
 
-const Main = ( {setFooter, setnum}) => {
+const Main = ({ setFooter, setnum }) => {
   const [data, setdata] = useState([]);
   const [note, setnote] = useState("");
 
@@ -16,8 +16,8 @@ const Main = ( {setFooter, setnum}) => {
     setFooter([1]);
   }
 
-  function updateNum(){
-    setnum(data.length)
+  function updateNum() {
+    setnum(data.length);
   }
 
   function noteChange(e) {
@@ -27,8 +27,8 @@ const Main = ( {setFooter, setnum}) => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       addItem();
-      addFooter()
-      updateNum()
+      addFooter();
+      updateNum();
     }
   };
 
@@ -44,8 +44,16 @@ const Main = ( {setFooter, setnum}) => {
       ></input>
       <ul className="todo-app__list" id="todo-list">
         {data.map((item) => {
-          const { note, id, } = item;
-          return <Item key={id} id={id} notetext={note} deleteData={setdata} setnum={setnum}/>;
+          const { note, id } = item;
+          return (
+            <Item
+              key={id}
+              id={id}
+              notetext={note}
+              deleteData={setdata}
+              setnum={setnum}
+            />
+          );
         })}
       </ul>
     </div>

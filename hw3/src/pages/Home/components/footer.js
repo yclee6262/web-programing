@@ -1,4 +1,4 @@
-const Footer = ({TODO_num}) => {
+const Footer = ({ TODO_num }) => {
   return (
     <div className="todo-app__footer" id="todo-footer">
       <div className="todo-app__total">{TODO_num + 1} left</div>

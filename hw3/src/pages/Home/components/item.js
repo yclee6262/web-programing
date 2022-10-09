@@ -11,19 +11,19 @@ const Item = ({ id, notetext, deleteData, setnum }) => {
     });
   }
 
-  const [isDone, setIsDone] = useState(false)
-  function updateDone(){
-    setIsDone(!isDone)
-    console.log(isDone)
+  const [isDone, setIsDone] = useState(false);
+  function updateDone() {
+    setIsDone(!isDone);
+    console.log(isDone);
   }
-  
+
   return (
     <div className="todo-app__item" key={id}>
       <div className="todo-app__checkbox">
         <input type="checkbox" id={id} onClick={updateDone}></input>
         <label for={id}></label>
       </div>
-      <h1 className={isDone? 'todo-app_item-done' : "todo-app__item-detail"}>
+      <h1 className={isDone ? "todo-app_item-done" : "todo-app__item-detail"}>
         <p>{notetext}</p>
       </h1>
       <img
