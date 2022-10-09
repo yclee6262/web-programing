@@ -2,14 +2,18 @@ import Item from "./item";
 import { useState } from "react";
 import { v4 } from "uuid";
 
-const Main = () => {
+const Main = ( {setFooter}) => {
   const [data, setdata] = useState([]);
   const [note, setnote] = useState("");
 
   function addItem() {
     setdata(function (prev) {
-      return [{ id: v4(), note }, ...prev];
+      return [...prev, { id: v4(), note }];
     });
+  }
+
+  function addFooter() {
+    setFooter([1]);
   }
 
   function noteChange(e) {
@@ -19,6 +23,7 @@ const Main = () => {
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
       addItem();
+      addFooter()
     }
   };
 
