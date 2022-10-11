@@ -11,11 +11,11 @@ import Cell from './Cell';
 import Modal from './Modal';
 import Dashboard from './Dashboard';
 import { revealed } from '../util/reveal';
-import createBoard from '../util/createBoard';
+import createBoard from '../util/createBoard'; 
 import React, { useEffect, useState } from 'react';
 
 
-const Board = ({ boardSize, mineNum, backToHome }) => {
+const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const [board, setBoard] = useState([]);                     // An 2-dimentional array. It is used to store the board.
     const [nonMineCount, setNonMineCount] = useState(0);        // An integer variable to store the number of cells whose value are not '💣'.
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
@@ -26,11 +26,13 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     useEffect(() => {
         // Calling the function
         freshBoard();
-    }, []);
+//        window.alert("new")
+    }, [startGame]);
 
     // Creating a board
     const freshBoard = () => {
         const newBoard = createBoard(boardSize, mineNum);
+        setBoard(newBoard)
         // Basic TODO: Use `newBoard` created above to set the `Board`.
         // Hint: Read the definition of those Hook useState functions and make good use of them.
 
@@ -70,10 +72,10 @@ const Board = ({ boardSize, mineNum, backToHome }) => {
     return (
         <div className='boardPage' >
             <div className='boardWrapper' >
-                 <h1>This is the board Page!</h1>  {/* This line of code is just for testing. Please delete it if you finish this function. */}
-
+                <div className='boardContainer'></div>
                 {/* Advanced TODO: Implement Modal based on the state of `gameOver` */}
-
+                <Dashboard />
+                <createBoard />
                 {/* Basic TODO: Implement Board 
                 Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.
                 Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}

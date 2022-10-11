@@ -8,7 +8,7 @@
 
 import randomNum from "./randomFixSeed";
 
-export default (boardSize, mineNum) => {
+const createBoard = (boardSize, mineNum) => {
     let board = [];
     let mineLocations = [];
 
@@ -50,8 +50,6 @@ export default (boardSize, mineNum) => {
         }
     }
 
-    
-    
 
     for (let r = 0; r < boardSize; r++) {
         for (let c = 0; c < boardSize; c++) {
@@ -76,7 +74,10 @@ export default (boardSize, mineNum) => {
         }
     }
 
-    //  Testing: printBoard()
+    printBoard()
 
     return { board, mineLocations };
 };
+
+
+export default createBoard

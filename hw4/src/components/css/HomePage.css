@@ -41,6 +41,7 @@
     background-color: #0f0f4b;
     color: lightblue;
     border: 3px solid transparent;
+    transition-duration: 0.3s;
 }
 
 .controlContainer {}
