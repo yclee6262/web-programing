@@ -16,5 +16,5 @@
   },
   "scripts": {
     "server": "nodemon server.js --ext js --exec babel-node"
-  },
+  }
 }
