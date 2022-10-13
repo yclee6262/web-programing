@@ -50,7 +50,7 @@ const createBoard = (boardSize, mineNum) => {
         }
     }
 
-
+    console.log(mineLocations)
     for (let r = 0; r < boardSize; r++) {
         for (let c = 0; c < boardSize; c++) {
             if (board[r][c].value === '💣') continue;

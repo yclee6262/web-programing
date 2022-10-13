@@ -26,17 +26,24 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     useEffect(() => {
         // Calling the function
         freshBoard();
-//        window.alert("new")
-    }, [startGame]);
+
+    }, []);
 
     // Creating a board
     const freshBoard = () => {
         const newBoard = createBoard(boardSize, mineNum);
-        setBoard(newBoard)
+        
+        console.log(newBoard)
+        setBoard(newBoard.board)
+        setMineLocations(newBoard.mineLocations)
+        
         // Basic TODO: Use `newBoard` created above to set the `Board`.
         // Hint: Read the definition of those Hook useState functions and make good use of them.
 
     }
+
+    console.log(board[0])
+    console.log(board[1])
 
     const restartGame = () => {
         freshBoard();
@@ -69,13 +76,27 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
 
     };
 
+
     return (
         <div className='boardPage' >
             <div className='boardWrapper' >
-                <div className='boardContainer'></div>
+                <div className='boardContainer'>
                 {/* Advanced TODO: Implement Modal based on the state of `gameOver` */}
-                <Dashboard />
-                <createBoard />
+                    <Dashboard />
+                    {board.map((row, rowIdx) => <div id={'row' + rowIdx} style={{display: "flex"}}>
+                        {row.map((item, index) => {
+                            return (
+                            <Cell
+                            rowIdx={rowIdx}
+                            colIdx={index}
+                            detail={board}
+                            //updateFlag={}
+                            //revealCell={}                        
+                            />
+                            )
+                        })} 
+                    </div>)}
+                </div>
                 {/* Basic TODO: Implement Board 
                 Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.
                 Reminder: Remember to use the component <Cell> and <Dashboard>. See Cell.js and Dashboard.js for detailed information. */}
