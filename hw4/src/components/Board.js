@@ -84,11 +84,11 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
                 {/* Advanced TODO: Implement Modal based on the state of `gameOver` */}
                     <Dashboard />
                     {board.map((row, rowIdx) => <div id={'row' + rowIdx} style={{display: "flex"}}>
-                        {row.map((item, index) => {
+                        {row.map((col, colIdx) => {
                             return (
                             <Cell
                             rowIdx={rowIdx}
-                            colIdx={index}
+                            colIdx={colIdx}
                             detail={board}
                             //updateFlag={}
                             //revealCell={}                        
