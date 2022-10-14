@@ -42,9 +42,6 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
 
     }
 
-    console.log(board[0])
-    console.log(board[1])
-
     const restartGame = () => {
         freshBoard();
         setGameOver(false);
@@ -73,6 +70,9 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
         // Hint: If `Hit the mine`, check ...?
         //       Else if `Reveal the number cell`, check ...?
         // Reminder: Also remember to handle the condition that after you reveal this cell then you win the game.
+        if (newBoard[x][y] === '💣'){
+            
+        }
 
     };
 
@@ -82,16 +82,16 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
             <div className='boardWrapper' >
                 <div className='boardContainer'>
                 {/* Advanced TODO: Implement Modal based on the state of `gameOver` */}
-                    <Dashboard />
+                    <Dashboard remainFlagNum={mineNum} />
                     {board.map((row, rowIdx) => <div id={'row' + rowIdx} style={{display: "flex"}}>
                         {row.map((col, colIdx) => {
                             return (
                             <Cell
                             rowIdx={rowIdx}
                             colIdx={colIdx}
-                            detail={board}
+                            detail={board[rowIdx][colIdx]}
                             //updateFlag={}
-                            //revealCell={}                        
+                            revealCell={revealCell}                 
                             />
                             )
                         })} 
