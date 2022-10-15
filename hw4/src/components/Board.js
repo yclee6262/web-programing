@@ -17,7 +17,7 @@ import React, { useEffect, useState } from 'react';
 
 const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const [board, setBoard] = useState([]);                     // An 2-dimentional array. It is used to store the board.
-    const [nonMineCount, setNonMineCount] = useState(0);        // An integer variable to store the number of cells whose value are not '💣'.
+    const [nonMineCount, setNonMineCount] = useState(boardSize * boardSize - mineNum);        // An integer variable to store the number of cells whose value are not '💣'.
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
     const [gameOver, setGameOver] = useState(false);            // A boolean variable. If true, means you lose the game (Game over).
     const [remainFlagNum, setRemainFlagNum] = useState(0);      // An integer variable to store the number of remain flags.
@@ -70,10 +70,13 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
         // Hint: If `Hit the mine`, check ...?
         //       Else if `Reveal the number cell`, check ...?
         // Reminder: Also remember to handle the condition that after you reveal this cell then you win the game.
-        if (newBoard[x][y] === '💣'){
-            
-        }
-
+        let renewed_board = revealed(newBoard, x, y, nonMineCount)
+        //if (newBoard[x][y].detail){
+            setBoard(renewed_board.board)
+            setNonMineCount(renewed_board.newNonMinesCount)
+            console.log(renewed_board[x][y])
+        //}
+        
     };
 
 
@@ -89,9 +92,9 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
                             <Cell
                             rowIdx={rowIdx}
                             colIdx={colIdx}
-                            detail={board[rowIdx][colIdx]}
+                            detail={board[colIdx][rowIdx]}
                             //updateFlag={}
-                            revealCell={revealCell}                 
+                            revealCell={revealCell}            
                             />
                             )
                         })} 
