@@ -17,3 +17,7 @@
 ![](https://i.imgur.com/nLgxGL2.png)
 ![](https://i.imgur.com/5TwVv4A.png)
 ![](https://i.imgur.com/BvhORok.png)
+
+- basic requirements completed
+- when you click on a bomb, all the bomb will be revealed and that means gameover
+- when the number of flags becomes 0 and all other caells are revealed, you won.
