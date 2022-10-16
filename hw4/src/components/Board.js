@@ -20,7 +20,7 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const [nonMineCount, setNonMineCount] = useState(boardSize * boardSize - mineNum);        // An integer variable to store the number of cells whose value are not '💣'.
     const [mineLocations, setMineLocations] = useState([]);     // An array to store all the coordinate of '💣'.
     const [gameOver, setGameOver] = useState(false);            // A boolean variable. If true, means you lose the game (Game over).
-    const [remainFlagNum, setRemainFlagNum] = useState(0);      // An integer variable to store the number of remain flags.
+    const [remainFlagNum, setRemainFlagNum] = useState(mineNum);      // An integer variable to store the number of remain flags.
     const [win, setWin] = useState(false);                      // A boolean variable. If true, means that you win the game.
 
     useEffect(() => {
@@ -33,7 +33,7 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const freshBoard = () => {
         const newBoard = createBoard(boardSize, mineNum);
         
-        console.log(newBoard)
+        console.log(newBoard.mineLocations[0][0])
         setBoard(newBoard.board)
         setMineLocations(newBoard.mineLocations)
         
@@ -52,9 +52,18 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const updateFlag = (e, x, y) => {
         // To not have a dropdown on right click
         e.preventDefault();
+        if (board[x][y].revealed || gameOver) return;
         // Deep copy of a state
         let newBoard = JSON.parse(JSON.stringify(board));
         let newFlagNum = remainFlagNum;
+        newBoard[x][y].flagged = !newBoard[x][y].flagged;
+        setBoard(newBoard)
+        if (newBoard[x][y].flagged === true){
+            setRemainFlagNum(newFlagNum - 1)
+        }
+        else {
+            setRemainFlagNum(newFlagNum + 1)
+        }
 
         // Basic TODO: Right Click to add a flag on board[x][y]
         // Remember to check if board[x][y] is able to add a flag (remainFlagNum, board[x][y].revealed)
@@ -71,11 +80,24 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
         //       Else if `Reveal the number cell`, check ...?
         // Reminder: Also remember to handle the condition that after you reveal this cell then you win the game.
         let renewed_board = revealed(newBoard, x, y, nonMineCount)
-        //if (newBoard[x][y].detail){
-            setBoard(renewed_board.board)
+        setBoard(renewed_board.board)
+        if (newBoard[x][y].value !== "💣"){          
             setNonMineCount(renewed_board.newNonMinesCount)
-            console.log(renewed_board[x][y])
-        //}
+            if (nonMineCount === 0){
+                setWin(true)
+                console.log(win)
+            }
+        }
+        if (newBoard[x][y].value === "💣"){
+            setGameOver(true)
+            for (var i = 0; i < mineNum; i++){
+                var each_mine = mineLocations[i]
+                var mine_x = each_mine[0]
+                var mine_y = each_mine[1]
+                var explode_board = revealed(newBoard, mine_x, mine_y, nonMineCount)
+                setBoard(explode_board.board)
+            }
+        }
         
     };
 
@@ -85,7 +107,7 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
             <div className='boardWrapper' >
                 <div className='boardContainer'>
                 {/* Advanced TODO: Implement Modal based on the state of `gameOver` */}
-                    <Dashboard remainFlagNum={mineNum} />
+                    <Dashboard remainFlagNum={remainFlagNum} />
                     {board.map((row, rowIdx) => <div id={'row' + rowIdx} style={{display: "flex"}}>
                         {row.map((col, colIdx) => {
                             return (
@@ -93,12 +115,13 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
                             rowIdx={rowIdx}
                             colIdx={colIdx}
                             detail={board[colIdx][rowIdx]}
-                            //updateFlag={}
+                            updateFlag={updateFlag}
                             revealCell={revealCell}            
                             />
                             )
                         })} 
                     </div>)}
+                    
                 </div>
                 {/* Basic TODO: Implement Board 
                 Useful Hint: The board is composed of BOARDSIZE*BOARDSIZE of Cell (2-dimention). So, nested 'map' is needed to implement the board.
