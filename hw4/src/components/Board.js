@@ -52,7 +52,7 @@ const Board = ({ startGame, boardSize, mineNum, backToHome }) => {
     const updateFlag = (e, x, y) => {
         // To not have a dropdown on right click
         e.preventDefault();
-        if (board[x][y].revealed || gameOver) return;
+        if (board[x][y].revealed || gameOver || win) return;
         // Deep copy of a state
         let newBoard = JSON.parse(JSON.stringify(board));
         let newFlagNum = remainFlagNum;
