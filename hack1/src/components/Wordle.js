@@ -54,7 +54,7 @@ const Wordle = ({ solution }) => {
             <Keyboard usedChars={usedChars}/>
             
             {/* ↓ This button is only for testing! Please remember to comment it before you hand in your hack#1. ↓ */}
-            { <button className='App-test-btn' onClick={printTest}>TEST</button>       }
+            {/* <button className='App-test-btn' onClick={printTest}>TEST</button>       */}
             {/* ↑ This button is only for testing! Please remember to comment it before you hand in your hack#1. ↑ */}
         </div>
     )

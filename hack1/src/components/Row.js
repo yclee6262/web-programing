@@ -11,17 +11,20 @@ import React from 'react';
 
 
 const Row = ({ guess, rowIdx, id }) => {
+    console.log("guess",guess)
+    //let letters = guess.split('');
+    //console.log(letters)
     return (
         <div className='Row-container'>
             {/* TODO 3: Row Implementation -- Row */}
             
             {/* ↓ Default row, you should modify it. ↓ */}
             <div className='Row-wrapper' key={id}>
-                <div className='Row-wordbox'></div>
-                <div className='Row-wordbox'></div>
-                <div className='Row-wordbox'></div>
-                <div className='Row-wordbox'></div>
-                <div className='Row-wordbox'></div>
+                <div className='Row-wordbox'>{guess}</div>
+                <div className='Row-wordbox'>{guess}</div>
+                <div className='Row-wordbox'>{guess}</div>
+                <div className='Row-wordbox'>{guess}</div>
+                <div className='Row-wordbox'>{guess}</div>
             </div>
             {/* ↑ Default row, you should modify it. ↑ */}
         </div>

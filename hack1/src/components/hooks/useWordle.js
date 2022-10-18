@@ -40,8 +40,7 @@ const useWordle = (solution) => {
             return;
         }
         // (3) Press Enter, store curGuess to guesses, reset curGuess and update parameters .
-        setTurn(turn_ ++)
-        console.log(turn)
+        
         // console.log("Press Enter!!!! Store and reset curGuess!");
         // TODO 4: Check each wordbox's color in `curGuess` and update `guess`, `turn` and `curGuess`
         // Hint: check green first, and then check yellow.
@@ -79,6 +78,12 @@ const useWordle = (solution) => {
         // console.log("You just press: ", key);
         if (key === 'Enter') {
             handleEnter();
+            let new_arr = [...guesses]
+            new_arr[turn] = curGuess.split('')
+            setGuesses(new_arr)
+            setTurn(++turn_)
+
+            setCurGuess("")
         }
         else if (key === 'Backspace') handleBackspace();
         else if (/^[A-Za-z]$/.test(key)) handleCharacter(key);

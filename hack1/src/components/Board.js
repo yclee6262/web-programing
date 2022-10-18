@@ -20,10 +20,12 @@ const Board = ({ turn, guesses, curGuess }) => {
                 Hint: Use `CurRow` instead of `Row` when you are passing `curGuess` into it. */}
             {board.map((row, rowIdx) => {
                 if (turn === rowIdx){
-                    return <CurRow curGuess={curGuess} rowIdx={turn}/>
+                    console.log("turn", turn)
+                    return <CurRow curGuess={curGuess} rowIdx={rowIdx}/>
                 }
                 else{
-                    return <Row guess={guesses} rowIdx={rowIdx} key={rowIdx} id={rowIdx}/>
+                    console.log(rowIdx)
+                    return <Row prev={curGuess} guess={guesses[rowIdx]} rowIdx={rowIdx} key={rowIdx} id={rowIdx}/>
                 }
             })}
             
