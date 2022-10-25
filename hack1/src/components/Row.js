@@ -12,8 +12,6 @@ import React from 'react';
 
 const Row = ({ guess, rowIdx, id }) => {
     console.log("guess",guess)
-    //let letters = guess.split('');
-    //console.log(letters)
     return (
         <div className='Row-container'>
             {/* TODO 3: Row Implementation -- Row */}
