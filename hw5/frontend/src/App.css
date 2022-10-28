@@ -1,38 +1,113 @@
 .App {
+  display: "flex";
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  font-family: 'Futura';
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.HomeWrapper {
+  height: 100vh;
+  width: 100vw;
+  margin: 2% auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.title {
+  font-size: 75px;
+  font-family: 'Futura';
+  font-weight: 900;
+  padding-top: 50px;
+  color: #0f0f4b;
+}
+
+.btn {
+  font-size: 30px;
+  padding: 10px 30px;
+  border: transparent;
+  border-radius: 25px;
+  margin: 20px auto;
+  color: #0f0f4b;
+  background-color: lightblue;
+  border: 3px solid #0f0f4b;
+
+}
+
+.btn:hover {
+  cursor: pointer;
+  background-color: #0f0f4b;
+  color: lightblue;
+  border: 3px solid transparent;
+  transition-duration: 0.3s;
+}
+
+.controlContainer {}
+
+.controlWrapper {
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.controlPanel {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.error {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 300;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.controlCol {
+  display: inline-block;
+  width: 40%;
+}
+
+.inputSlider {
+  outline: 0;
+  border: 0;
+  border-radius: 500px;
+
+}
+
+.controlTitle {
+  font-size: 25px;
+  color: #0f0f4b;
+}
+
+.controlNum {
+  font-size: 20px;
+  color: #0f0f4b;
+}
+
+/* Chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  input[type='range'] {
+      -webkit-appearance: none !important;
+      width: 400px;
+      height: 5px;
+      background-color: #0f0f4b;
+      border: none;
+      outline: none;
   }
-  to {
-    transform: rotate(360deg);
+
+  input[type='range']::-webkit-slider-thumb {
+      -webkit-appearance: none !important;
+      height: 20px;
+      width: 20px;
+      background: white;
+      border: 2px solid #0f0f4b;
+      border-radius: 50%;
+      cursor: ew-resize;
   }
+
+  input[type='range']::-webkit-slider-thumb:hover {
+      background: #0f0f4b;
+  }
+
 }
