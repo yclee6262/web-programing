@@ -14,6 +14,8 @@ router.post('/start', (_, res) => {
 router.get('/guess', (req, res) => {
     const input_num = req.query.guess
     ans = getNumber()
+    console.log("input = ", input_num)
+    console.log("ans = ", ans)
     if (input_num > 100 || input_num < 1) {
         res.status(406).send({msg: 'Not a legal number.' })
     }else if (Number(input_num) < ans){
@@ -22,11 +24,9 @@ router.get('/guess', (req, res) => {
         res.json({msg: "Smaller"})
     }else if(Number(input_num) === ans){
         res.json({msg: "Equal"})
-    }
-    else{
-        console.log("input =", req.query.guess)
-        console.log("ans =", ans)
-        res.json({msg: "Smaller"})
+        genNumber()
+        ans = getNumber()
+        console.log("win, new ans = ", ans)
     }
 })
 router.post('/restart', (_, res) => {
