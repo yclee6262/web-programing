@@ -13,5 +13,8 @@
     "@babel/core": "^7.19.6",
     "@babel/node": "^7.19.1",
     "@babel/preset-env": "^7.19.4"
-  }
+  },
+  "scripts": {
+    "server": "nodemon server.js"
+    }
 }
