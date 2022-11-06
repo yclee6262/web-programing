@@ -19,6 +19,7 @@ const Header = () => {
   const { addRegularMessage } = useScoreCard();
 
   const handleClear = async () => {
+    console.log("clear")
     const {
       data: { message },
     } = await axios.delete('/cards');
