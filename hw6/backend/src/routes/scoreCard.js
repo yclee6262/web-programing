@@ -7,12 +7,25 @@ router.delete("/cards", (req, res) => {
     deleteDB()
 });
 
-
-router.post("/card", (req, res) => {
+let alreadyExist = false;
+router.post("/card", async (req, res) => {
     const {name, subject, score} = req.body
-    res.json({message: 'Adding (' + name + ', ' + subject + ', ' + score + ')'});
-    saveUser(name, subject, score)
+    console.log("exist_before: " ,alreadyExist)
+    await saveUser(name, subject, score)
+    console.log("exist_after: " ,alreadyExist)
+    if (alreadyExist === true){
+        res.json({message: 'Updating (' + name + ', ' + subject + ', ' + score + ')'});
+        alreadyExist = false
+    }
+    else{
+        res.json({message: 'Adding (' + name + ', ' + subject + ', ' + score + ')'});
+        
+    }
+    
+    
 });
+
+
 router.get("/cards", (req, res) => {
     res.json({message: 'Get a get request'})
 });
@@ -27,12 +40,15 @@ const deleteDB = async () => {
 const saveUser = async (name, subject, score) => {
     const existing = await User.findOneAndUpdate({ name, subject }, {name: name, subject:subject, score:score}, {new:true});
     if (existing) {
-        console.log("")
+        alreadyExist = true
+        console.log("exist: ", alreadyExist)
         try{
             return;
         } catch(e){throw new Error("User creation error: " + e);}
     }
     else{
+        alreadyExist = false
+        console.log("exist: " ,alreadyExist)
         try {
             const newUser = new User({ name, subject, score });
             console.log("Created user", newUser);

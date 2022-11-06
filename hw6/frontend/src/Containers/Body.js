@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { useStyles } from '../hooks';
 import axios from '../api';
 import { useScoreCard } from '../hooks/useScoreCard';
+import { blue } from '@material-ui/core/colors';
 
 const Wrapper = styled.section`
   display: flex;
@@ -153,7 +154,7 @@ const Body = () => {
       </Row>
       <ContentPaper variant="outlined">
         {messages.map((m, i) => (
-          <Typography variant="body2" key={m + i} style={{ color: m.color }}>
+          <Typography variant="body2" key={m + i} style={{ color: blue }}>
             {m.message}
           </Typography>
         ))}
