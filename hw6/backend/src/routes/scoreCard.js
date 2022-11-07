@@ -2,6 +2,10 @@ import { Router } from "express";
 import User from "../models/ScoreCard";
 const router = Router();
 
+function allAreNull(arr) {
+    return arr.every(element => element === null);
+}
+
 router.delete("/cards", (req, res) => {
     res.json({message: 'Database cleared'});
     deleteDB()
@@ -35,13 +39,17 @@ router.get("/cards", (req, res) => {
                 console.log(err);
             }else{
                 console.log(result)
-                res.json({
-                    messages:result.map((attr) => {
-                        var name = attr.name
-                        var subject = attr.subject
-                        var score = attr.score
-                        return('Found cards with ' + dType + " '" + name + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
-                    })})
+                if(allAreNull(result)){
+                    res.json({message: dType + " '" + input + "' not found"})
+                }else{
+                    res.json({
+                        messages:result.map((attr) => {
+                            var name = attr.name
+                            var subject = attr.subject
+                            var score = attr.score
+                            return('Found cards with ' + dType + " '" + name + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
+                        })})
+                }
             }
         })    
     }
@@ -51,13 +59,17 @@ router.get("/cards", (req, res) => {
                 console.log(err);
             }else{
                 console.log(result)
-                res.json({
-                    messages:result.map((attr) => {
-                        var name = attr.name
-                        var subject = attr.subject
-                        var score = attr.score
-                        return('Found cards with ' + dType + " '" + subject + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
-                    })})
+                if(allAreNull(result)){
+                    res.json({message: dType + " '" + input + "' not found"})
+                }else{
+                    res.json({
+                        messages:result.map((attr) => {
+                            var name = attr.name
+                            var subject = attr.subject
+                            var score = attr.score
+                            return('Found cards with ' + dType + " '" + subject + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
+                        })})
+                }
             }
         })
     }
