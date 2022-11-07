@@ -10,9 +10,9 @@ router.delete("/cards", (req, res) => {
 let alreadyExist = false;
 router.post("/card", async (req, res) => {
     const {name, subject, score} = req.body
-    console.log("exist_before: " ,alreadyExist)
+    // console.log("exist_before: " ,alreadyExist)
     await saveUser(name, subject, score)
-    console.log("exist_after: " ,alreadyExist)
+    // console.log("exist_after: " ,alreadyExist)
     if (alreadyExist === true){
         res.json({message: 'Updating (' + name + ', ' + subject + ', ' + score + ')'});
         alreadyExist = false
@@ -21,13 +21,48 @@ router.post("/card", async (req, res) => {
         res.json({message: 'Adding (' + name + ', ' + subject + ', ' + score + ')'});
         
     }
-    
-    
 });
 
 
 router.get("/cards", (req, res) => {
-    res.json({message: 'Get a get request'})
+    
+    // console.log(req.query.type)
+    const dType = req.query.type
+    const input = req.query.queryString
+    if (dType === 'name'){
+        User.find({name:input}, function(err, result){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(result)
+                res.json({
+                    messages:result.map((attr) => {
+                        var name = attr.name
+                        var subject = attr.subject
+                        var score = attr.score
+                        return('Found cards with ' + dType + " '" + name + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
+                    })})
+            }
+        })    
+    }
+    else{
+        User.find({subject:input}, function(err, result){
+            if(err){
+                console.log(err);
+            }else{
+                console.log(result)
+                res.json({
+                    messages:result.map((attr) => {
+                        var name = attr.name
+                        var subject = attr.subject
+                        var score = attr.score
+                        return('Found cards with ' + dType + " '" + subject + "' " + ': (' + name + ', ' + subject + ', ' + score + ')' + '\n')
+                    })})
+            }
+        })
+    }
+    // searchUser(input, dType)
+    // res.json({message: 'Get a get request'})
 });
 
 const deleteDB = async () => {
@@ -48,7 +83,7 @@ const saveUser = async (name, subject, score) => {
     }
     else{
         alreadyExist = false
-        console.log("exist: " ,alreadyExist)
+        // console.log("exist: " ,alreadyExist)
         try {
             const newUser = new User({ name, subject, score });
             console.log("Created user", newUser);
