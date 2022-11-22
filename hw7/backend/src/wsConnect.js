@@ -5,6 +5,14 @@ const sendData = (data, ws) => {
 const sendStatus = (payload, ws) => {
     sendData(["status", payload], ws); }
 export default {
+    initData: (ws) => {
+        Message.find().sort({ created_at: -1 }).limit(100).exec((err, res) => {
+            if (err) throw err;
+            // initialize app with existing messages
+            sendData(["init", res], ws);
+        });
+    },
+
     onMessage: (ws) => (
         async (byteString) => {
             const { data } = byteString
@@ -22,6 +30,14 @@ export default {
                         type: 'success',
                         msg: 'Message sent.'
                     }, ws)
+                    break
+                }
+                case 'clear': {
+                    Message.deleteMany({}, () => {
+                    sendData(['cleared'], ws)
+                    sendStatus
+                    ({ type: 'info', msg: 'Message cache cleared.'}, ws)
+                    })
                     break
                 }
                 default: break;
