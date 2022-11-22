@@ -1,31 +1,32 @@
 import './App.css'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useEffect } from 'react'
-import { Button, Input, Tag } from 'antd'
+import { Button, Input, message,Tag } from 'antd'
 import useChat from './useChat'
 
 function App() {
   const {status, messages, sendMessage } = useChat()
   const [username, setUsername] = useState('');
   const [body, setBody] = useState('');
+  const bodyRef = useRef(null)
 
   const displayStatus = (s) => {
     if (s.msg) {
       const { type, msg } = s;
-      const content = {content: msg, duration: 0.5 }
+      const content = {content: msg, duration: 1 }
       switch (type) {
         case 'success': 
-        msg.success(content)
+        message.success(content)
         break
       case 'error':
       default:
-        msg.error(content)
+        message.error(content)
         break
     }}}
   
   useEffect(() => {
-  displayStatus(status)}, [status])
-  console.log(messages)
+  displayStatus(status)},[status])
+  // console.log(messages)
    
   return (
     <div className="App">
@@ -40,23 +41,35 @@ function App() {
         { messages.length === 0 ? (
           <p style={{ color: '#ccc' }}> No messages... </p>): 
           ( messages.map(({ name, body }, i) => (
-            <p className="App-message" key={i}>
+            <p key={i}>
               <Tag color="blue">{name}</Tag> {body}
             </p>)))
         }
       </div>
       <Input
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+          bodyRef.current.focus()
+          }}}
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         style={{ marginBottom: 10 }}
       ></Input>
       <Input.Search
+        ref={bodyRef}
         enterButton="Send"
         placeholder="Type a message here..."
         value={body}
         onChange={(e) => setBody(e.target.value)}
         onSearch={(msg) => {
+          if (!msg || !username) {
+            displayStatus({
+            type: 'error',
+            msg: 'Please enter a username and a message body.'
+            })
+            return
+          }
           sendMessage({name: username, body: msg})
           setBody('')
         }}
