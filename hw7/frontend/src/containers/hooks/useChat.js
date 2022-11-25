@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { message } from "antd";
 import { createContext, useContext } from "react";
 
 const client = new WebSocket('ws://localhost:4000');
+const LOCALSTORAGE_KEY = "save-me";
+const savedMe = localStorage.getItem(LOCALSTORAGE_KEY);
 
 const ChatContext = createContext({
     status: {},
@@ -17,7 +19,7 @@ const ChatProvider = (props) => {
     const [messages, setMessages] = useState([]);
     const [status, setStatus] = useState({});
     const [signedIn, setSignedIn] = useState(false)
-    const [me, setMe] = useState('')
+    const [me, setMe] = useState(savedMe || '')
 
     const clearMessages = () => {
         sendData(["clear"]);
@@ -83,10 +85,13 @@ const ChatProvider = (props) => {
                 break;
             }    
             default: break;
-
-
         }
     }
+
+    useEffect(() => {
+        if (signedIn) {
+            localStorage.setItem(LOCALSTORAGE_KEY, me);
+        }}, [me, signedIn]);
 
     return (
         <ChatContext.Provider
