@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const StyledMessage = styled.div`
     display: flex;
     align-items: center;
-    flex-direction: ${({isMe}) => (isMe ? 'row-reverse' : 'row')};
+    flex-direction: ${({fromMe}) => (fromMe ? 'row-reverse' : 'row')};
     margin: 8px 10px;
     & p:first-child {
         margin: 0 5px;
@@ -16,9 +16,9 @@ const StyledMessage = styled.div`
         margin: auto 0;
     }`;
 
-const Message = ({ isMe, message}) => {
+const Message = ({ fromMe, message}) => {
     return (
-    <StyledMessage isMe={isMe}>
+    <StyledMessage fromMe={fromMe}>
         <p> {message}</p>
     </StyledMessage>
     );

@@ -1,10 +1,8 @@
 import http from "http";
 import express from "express";
-import dotenv from "dotenv-defaults";
 import mongoose from "mongoose";
 import WebSocket from "ws";
 import wsConnect from "./wsConnect";
-
 import db from './db'
 db.connect();
 
@@ -16,9 +14,9 @@ const database = mongoose.connection
 database.once('open', () => {
     console.log("MongoDB connected!");
     wss.on('connection', (ws) => {
-        // Define WebSocket connection logic
+        // Define WebSocket connection logic 
         wsConnect.initData(ws);
-        ws.onmessage = wsConnect.onMessage(ws);
+        ws.onmessage = wsConnect.onMessage(wss, ws);
  });
 });
 const PORT = process.env.PORT || 4000;

@@ -2,9 +2,13 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema
 // Creating a schema, sort of like working with an ORM
 const MessageSchema = new Schema({
-    name: {
+    from: {
         type: String,
-        required: [true, 'Name field is required.']
+        required: [true, 'From field is required.']
+    },
+    to: {
+        type: String,
+        required: [true, 'To field is required']
     },
     body: {
         type: String,

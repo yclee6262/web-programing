@@ -33,7 +33,6 @@ const ChatRoom = () => {
     const [msg, setMsg] = useState('')
     const [msgSent, setMsgSent] = useState(false);
     const [modalOpen, setModalOpen] = useState('')
-    const [username, setUsername] = useState('');
     const [body, setBody] = useState('');
     const bodyRef = useRef(null)
     const msgFooter = useRef(null)
@@ -44,8 +43,8 @@ const ChatRoom = () => {
             <p style={{ color: '#ccc' }}> No messages... </p>
         ) :  ( 
         <ChatBoxWrapper>{
-            chat.map(({ name, body }, i) => 
-            (<Message isMe={name === me} message={body} key={i} />))}
+            chat.map(({ from, body }, i) => 
+            (<Message fromMe={from === me} message={body} key={i} />))}
             <FootRef ref={msgFooter} />
         </ChatBoxWrapper>)
             // messages.map(({ name, body }, i) => (
@@ -55,7 +54,7 @@ const ChatRoom = () => {
     );
 
     const extractChat = (friend) => {
-        return displayChat(messages.filter(({name, body}) => ((name === friend) || (name === me))));
+        return displayChat(messages.filter(({from}) => ((from === friend) || (from === me))));
     };
 
     const createChatBox = (friend) => {
@@ -117,9 +116,9 @@ const ChatRoom = () => {
             <ChatModal
                 open={modalOpen}
                 onCreate={({ name }) => {
-                setActiveKey(createChatBox(name));
-                extractChat(name);
-                setModalOpen(false);
+                    setActiveKey(createChatBox(name));
+                    extractChat(name);
+                    setModalOpen(false);
                 }}
                 onCancel={() => { setModalOpen(false);}}
             />
@@ -131,17 +130,27 @@ const ChatRoom = () => {
             value={body}
             onChange={(e) => setBody(e.target.value)}
             onSearch={(msg) => {
-                if (!msg || !username) {
+                if (!msg) {
                     displayStatus({
                     type: 'error',
-                    msg: 'Please enter a username and a message body.'
+                    msg: 'Please enter a message.'
                     })
                     return
+                } else if (activeKey === ''){
+                    displayStatus({
+                        type: "error",
+                        msg: 'Please add a chatbox first.'
+                    });
+                    setMsg('')
+                    return
                 }
-                sendMessage({name: username, body: msg})
-                setBody('')
+                setMsg(msg)
+                console.log(msg)
+                sendMessage({from: me, to: activeKey, body: msg})
+                setMsg('');
+                setMsgSent(true);
             }}
-        ></Input.Search>
+        />
     </>
     </>
         
