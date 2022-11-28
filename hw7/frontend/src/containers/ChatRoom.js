@@ -27,7 +27,7 @@ const FootRef = styled.div`
 `;
 
 const ChatRoom = () => {
-    const {me, status, messages, sendMessage, clearMessages, displayStatus } = useChat()
+    const {me, status, messages, sendMessage, clearMessages, displayStatus, startChat } = useChat()
     const [chatBoxes, setChatBoxes] = useState([]);
     const [activeKey, setActiveKey] = useState('');
     const [msg, setMsg] = useState('')
@@ -53,15 +53,17 @@ const ChatRoom = () => {
             //   </p>)))
     );
 
-    const extractChat = (friend) => {
-        return displayChat(messages.filter(({from}) => ((from === friend) || (from === me))));
-    };
+    // const extractChat = (friend) => {
+    //     return displayChat(messages.filter(({from}) => ((from === friend) || (from === me))));
+    // };
 
     const createChatBox = (friend) => {
         if(chatBoxes.some(({key}) => key === friend)) {
             throw new Error(friend + "'s chat box already existed.")
         }
-        const chat = extractChat(friend);
+        const chat = startChat(me, friend);
+        console.log(chat)
+        displayChat(chat)
         setChatBoxes([...chatBoxes, {label: friend, children: chat, key: friend}]);
         setMsgSent(true);
         return friend;
@@ -100,7 +102,7 @@ const ChatRoom = () => {
                 activeKey={activeKey}
                 onChange={(key) => {
                     setActiveKey(key);
-                    extractChat(key);
+                    startChat(me, key);
                 }}
                 onEdit={(targetKey, action) => {
                     if (action === 'add'){
@@ -117,7 +119,7 @@ const ChatRoom = () => {
                 open={modalOpen}
                 onCreate={({ name }) => {
                     setActiveKey(createChatBox(name));
-                    extractChat(name);
+                    startChat(me, name);
                     setModalOpen(false);
                 }}
                 onCancel={() => { setModalOpen(false);}}
@@ -145,7 +147,7 @@ const ChatRoom = () => {
                     return
                 }
                 setMsg(msg)
-                console.log(msg)
+                // console.log(msg)
                 sendMessage({from: me, to: activeKey, body: msg})
                 setMsg('');
                 setMsgSent(true);
