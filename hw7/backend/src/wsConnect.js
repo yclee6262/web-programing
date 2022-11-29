@@ -1,5 +1,6 @@
 import Message from "../models/message"
-import {UserModel, MessageModel, ChatBoxModel} from "../models/chatbox"; 
+import {UserModel, MessageModel, ChatBoxModel, SimpleMessageModel} from "../models/chatbox"; 
+import mongoose from "mongoose";
 
 
 const makeName = (from, to) => {return [from, to].sort().join('_');};
@@ -10,10 +11,13 @@ const validateUser = async (name) => {
     if (existing) return existing
 }
 
-const validateChatBox = async (name, participants) => {
-    let box = await ChatBoxModel.findOne({ name });
-    if (!box)
-    box = await new ChatBoxModel
+const validateChatBox = async (roomName, sender) => {
+    let box = await SimpleMessageModel.findOne({ roomName });
+    // let box = await ChatBoxModel.findOne({ name });
+    if (!box){
+        box = await new SimpleMessageModel(roomName, sender)
+    }
+
     ({ name, users: participants }).save();
     return box.populate
     (["users", {path: 'messages', populate: 'sender' }]);
@@ -56,12 +60,10 @@ export default {
                     }
                     console.log("Room: " + chatBoxName);
                     chatBoxes[chatBoxName].add(ws);
-                    console.log(chatBoxes);
-                    var u = new UserModel();
-                    var c = new ChatBoxModel();
-                    u.name = payload.from;
-                    u.chatBoxes.push({chatBoxId: Chatbox.id});
-                    u.save();
+                    // console.log(chatBoxes);
+                    const s = new SimpleMessageModel();
+                    s.chatbox = chatBoxName;
+                    s.save();
                     // if (ws.box !== "" && chatBoxes[ws.box])
                     //     // user(ws) was in another chatbox
                     //     chatBoxes[ws.box].delete(ws);
@@ -74,7 +76,7 @@ export default {
                     // var u = new UserModel();
                     // var c = new ChatBoxModel();
                     // var m = new MessageModel();
-                    // const message = new ChatBoxModel({from, to, body})
+                    const message = new Message({from, to, body})
                     console.log(message);
                     try { await message.save();
                     } catch(e) {throw new Error ("Message DB save error: " + e);}
