@@ -29,10 +29,13 @@ const SearchPage = () => {
         // console.log({state})
         const data = await instance.get('/getSearch', {
             params: {
-                state
+                priceFilter: state.priceFilter,
+                mealFilter: state.mealFilter,
+                typeFilter: state.typeFilter,
+                sortBy: state.sortBy
             },
         });
-        // console.log(data.data)
+        console.log(data.data)
         setRestaurant(data.data.contents)
     }
 
@@ -83,7 +86,7 @@ const SearchPage = () => {
                                     <p className='distance'>{item.distance / 1000} km</p>
                                 </div>
                                 <p className='description'>{getDesc(item.tag)}</p>
-                                {/* {console.log("DEC", getDesc(item.tag))} */}
+                                {/* {console.log(typeof(item.tag[0]))} */}
                             </div>
                         </div>
                     </>

@@ -18,7 +18,9 @@ exports.GetSearch = async (req, res) => {
     const typeFilter  = req.query.typeFilter
     const sortBy      = req.query.sortBy
     /****************************************/
-    console.log(sortBy)
+    console.log(priceFilter[0])
+    console.log(mealFilter[0])
+    console.log(typeFilter[0])
 
     // NOTE Hint: 
     // use `db.collection.find({condition}).exec(err, data) {...}`
@@ -29,16 +31,19 @@ exports.GetSearch = async (req, res) => {
     
 
     // TODO Part I-3-a: find the information to all restaurants
-    await Info.find().exec((err, data) => {
+    await Info.find({ $and:[
+        {tag:{$in:[typeFilter[0].toString(), '']}},
+        {tag:{$in:[mealFilter[0].toString(), '']}},
+        {price:{$in:priceFilter[0].length}}
+    ]}).exec((err, data) => {
             if(err){
                 console.log(err);
                 res.status(403).send({ message: 'error', contents: err });
             }else{
-                console.log(data);
-                res.status(200).send({ message: 'success', contents: data });
+                // console.log(data);
+                return res.status(200).send({ message: 'success', contents: data });
             }
         })
-    
     // TODO Part II-2-a: revise the route so that the result is filtered with priceFilter, mealFilter and typeFilter
     // TODO Part II-2-b: revise the route so that the result is sorted by sortBy
 }
