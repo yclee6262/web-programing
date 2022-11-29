@@ -44,6 +44,7 @@ mongoose.connect(
         console.log('Reset Mode: reset the data')
         dataInit()
     }
+    dataInit()
     console.log("db connection is created")
 })
 

@@ -11,13 +11,14 @@
 import Info from '../models/info'
 
 exports.GetSearch = async (req, res) => {
-    console.log(req)
+    
     /*******    NOTE: DO NOT MODIFY   *******/
     const priceFilter = req.query.priceFilter
     const mealFilter  = req.query.mealFilter
     const typeFilter  = req.query.typeFilter
     const sortBy      = req.query.sortBy
     /****************************************/
+    console.log(sortBy)
 
     // NOTE Hint: 
     // use `db.collection.find({condition}).exec(err, data) {...}`
