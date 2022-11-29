@@ -22,6 +22,7 @@ const SearchPage = () => {
     const getRestaurant = async () => {
         // TODO Part I-3-b: get information of restaurants from DB
         console.log('search page...');
+        console.log(state)
         const {
             data: { messages, message },
         } = await axios.get('/search', {
