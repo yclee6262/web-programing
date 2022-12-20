@@ -38,9 +38,9 @@ const Mutation = {
   // TODO 6.3 Publish itemDeleted
   deleteItem: async(parent, {input}, {itemModel, pubSub}) => {
     const itemDelete = await itemModel.findOneAndDelete(
-      {"id":input.id},
+      {"id":input},
     )
-    return id
+    return input
   }
   // TODO 5.2 End
   // TODO 6.3 End
