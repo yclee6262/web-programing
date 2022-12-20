@@ -7,11 +7,6 @@ export const CREATE_ITEM_MUTATION = gql`
       input: $input
     ) {
       id
-      name
-      description
-      date
-      amount
-      category
     }
   }
 `;
