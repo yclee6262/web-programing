@@ -1,34 +1,43 @@
-import express from 'express'
-import http from 'http'
-import mongoose from 'mongoose'
-import mongo from './mongo'
-import WebSocket from 'ws'
-import wsConnect from './wsConnect'
+import * as fs from "fs";
+import { createServer } from "node:http";
+import { WebSocketServer } from "ws";
+import { createPubSub, createSchema, createYoga } from "graphql-yoga";
+import { useServer } from "graphql-ws/lib/use/ws";
+import ChatBoxModel from "./models/chatbox";
+import Query from "./resolvers/Query";
+import Mutation from "./resolvers/Mutation";
+import Subscription from "./resolvers/Subscription";
+import ChatBox from "./resolvers/ChatBox";
+const pubsub = createPubSub();
 
-mongo.connect()
-
-const app = express()
-const server = http.createServer(app)
-const wss = new WebSocket.Server({ server })
-const db = mongoose.connection
-
-db.once('open', () => {
-    console.log('MongoDB connected!')
-
-    wss.on('connection', (ws) => {
-        console.log("client connect")
-        ws.box = ''
-        // wsConnect.initData(ws);
-        ws.onmessage = wsConnect.onMessage(ws, wss)
-        ws.onclose = () => {
-            console.log("client disconnect")
-            wsConnect.clean(ws)
-        }
-    })
-})
-
-const PORT = process.env.PORT || 4000
-server.listen(PORT, () => {
-    console.log(`Server is up on port ${PORT}.`)
-})
-
+useServer(
+  {
+    execute: (args) => args.rootValue.execute(args),
+    subscribe: (args) => args.rootValue.subscribe(args),
+    onSubscribe: async (ctx, msg) => {
+      const { schema, execute, subscribe, contextFactory, parse, validate } =
+        yoga.getEnveloped({
+          ...ctx,
+          req: ctx.extra.request,
+          socket: ctx.extra.socket,
+          params: msg.payload,
+        });
+      const args = {
+        schema,
+        operationName: msg.payload.operationName,
+        document: parse(msg.payload.query),
+        variableValues: msg.payload.variables,
+        contextValue: await contextFactory(),
+        rootValue: {
+          execute,
+          subscribe,
+        },
+      };
+      const errors = validate(args.schema, args.document);
+      if (errors.length) return errors;
+      return args;
+    },
+  },
+  wsServer
+);
+export default httpServer;
