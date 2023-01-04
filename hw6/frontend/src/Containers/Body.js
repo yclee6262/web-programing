@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import Button from '@material-ui/core/Button';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Paper from '@material-ui/core/Paper';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import styled from 'styled-components';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
+import { useState } from "react";
+import Button from "@material-ui/core/Button";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Paper from "@material-ui/core/Paper";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import styled from "styled-components";
+import TextField from "@material-ui/core/TextField";
+import Typography from "@material-ui/core/Typography";
 
-import { useStyles } from '../hooks';
-import axios from '../api';
-import { useScoreCard } from '../hooks/useScoreCard';
-import { blue } from '@material-ui/core/colors';
+import { useStyles } from "../hooks";
+import axios from "../api";
+import { useScoreCard } from "../hooks/useScoreCard";
+import { blue } from "@material-ui/core/colors";
 
 const Wrapper = styled.section`
   display: flex;
@@ -43,12 +43,12 @@ const Body = () => {
   const { messages, addCardMessage, addRegularMessage, addErrorMessage } =
     useScoreCard();
 
-  const [name, setName] = useState('');
-  const [subject, setSubject] = useState('');
+  const [name, setName] = useState("");
+  const [subject, setSubject] = useState("");
   const [score, setScore] = useState(0);
 
-  const [queryType, setQueryType] = useState('name');
-  const [queryString, setQueryString] = useState('');
+  const [queryType, setQueryType] = useState("name");
+  const [queryString, setQueryString] = useState("");
 
   const handleChange = (func) => (event) => {
     func(event.target.value);
@@ -57,7 +57,7 @@ const Body = () => {
   const handleAdd = async () => {
     const {
       data: { message, card },
-    } = await axios.post('/card', {
+    } = await axios.post("/card", {
       name,
       subject,
       score,
@@ -70,7 +70,7 @@ const Body = () => {
   const handleQuery = async () => {
     const {
       data: { messages, message },
-    } = await axios.get('/cards', {
+    } = await axios.get("/cards", {
       params: {
         type: queryType,
         queryString,
