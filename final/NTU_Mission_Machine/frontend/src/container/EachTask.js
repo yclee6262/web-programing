@@ -88,7 +88,7 @@ const EachTask = () => {
       case "closed":
         return (
           <Button type="dashed" size={"large"} danger>
-            已徵到善心人士了( ´▽｀)
+            已徵到善心人士🥰
           </Button>
         );
       case "issue":
@@ -101,7 +101,7 @@ const EachTask = () => {
           </Button>
         ) : (
           <Button type="primary" size={"large"} onClick={handleDoneClick}>
-            已完成
+            任務完成
           </Button>
         );
       default:
@@ -109,7 +109,7 @@ const EachTask = () => {
     }
   };
   return (
-    <div style={{ margin: "3em", display: "flex", flexDirection: "column" }}>
+    <div style={{ margin: "3em", display: "flex", flexDirection: "column", alignItems: "center" }}>
       <h1
         style={{
           textAlign: "center",
@@ -122,7 +122,7 @@ const EachTask = () => {
         title={topic}
         bordered={false}
         style={{
-          width: "auto",
+          width: "60%",
         }}
       >
         <h3>詳細任務內容 : </h3>
@@ -136,9 +136,8 @@ const EachTask = () => {
       <div
         style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
       >
-        <Button style={{ width: "10%" }} onClick={backToMainpage}>
-          {" "}
-          回首頁{" "}
+        <Button onClick={backToMainpage}>
+          回首頁
         </Button>
       </div>
     </div>
